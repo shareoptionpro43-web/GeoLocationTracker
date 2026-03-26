@@ -45,7 +45,7 @@ jobs:
         run: ./gradlew :app:assembleDebug --stacktrace
 
       - name: Build Release APK
-        run: ./gradlew :app:assembleRelease --stacktrace
+        run: ./gradlew :app:assembleRelease --stacktrace --info 2>&1 | tail -100
 
       - name: Rename APKs
         run: |
