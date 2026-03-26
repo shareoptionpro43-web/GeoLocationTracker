@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="match_parent"
+    android:orientation="vertical" android:background="#0D1B2A">
+
+    <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+        android:orientation="horizontal" android:background="#1A2E40" android:padding="12dp"
+        android:gravity="center_vertical">
+        <TextView android:id="@+id/tvCount" android:layout_width="0dp" android:layout_height="wrap_content"
+            android:layout_weight="1" android:text="0 records" android:textColor="#90A4AE" android:textSize="14sp"/>
+        <Button android:id="@+id/btnExport" android:layout_width="wrap_content" android:layout_height="36dp"
+            android:text="📤 Export CSV" android:textSize="12sp" app:backgroundTint="#1565C0"/>
+    </LinearLayout>
+
+    <androidx.recyclerview.widget.RecyclerView android:id="@+id/rv"
+        android:layout_width="match_parent" android:layout_height="match_parent"
+        android:padding="8dp" android:clipToPadding="false"/>
+</LinearLayout>

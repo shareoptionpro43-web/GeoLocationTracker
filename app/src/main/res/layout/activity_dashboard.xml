@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent" android:layout_height="match_parent"
+    android:background="#0D1B2A">
+
+    <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+        android:orientation="vertical" android:padding="16dp">
+
+        <!-- Speedometer -->
+        <com.example.geolocationtracker.ui.SpeedometerView
+            android:id="@+id/speedometer"
+            android:layout_width="260dp" android:layout_height="260dp"
+            android:layout_gravity="center_horizontal" android:layout_marginBottom="8dp"/>
+
+        <TextView android:id="@+id/tvCurrentSpeed"
+            android:layout_width="match_parent" android:layout_height="wrap_content"
+            android:text="0.0 km/h" android:textColor="#FFFFFF" android:textSize="20sp"
+            android:textStyle="bold" android:gravity="center" android:layout_marginBottom="16dp"/>
+
+        <!-- Stats Row 1 -->
+        <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+            android:orientation="horizontal" android:layout_marginBottom="8dp">
+
+            <androidx.cardview.widget.CardView android:layout_width="0dp" android:layout_height="wrap_content"
+                android:layout_weight="1" android:layout_marginEnd="4dp"
+                app:cardBackgroundColor="#1A2E40" app:cardCornerRadius="12dp">
+                <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+                    android:orientation="vertical" android:padding="14dp">
+                    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                        android:text="MAX SPEED" android:textColor="#546E7A" android:textSize="10sp"/>
+                    <TextView android:id="@+id/tvMaxSpeed" android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" android:text="0.0 km/h"
+                        android:textColor="#EF5350" android:textSize="18sp" android:textStyle="bold"/>
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView android:layout_width="0dp" android:layout_height="wrap_content"
+                android:layout_weight="1" android:layout_marginStart="4dp"
+                app:cardBackgroundColor="#1A2E40" app:cardCornerRadius="12dp">
+                <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+                    android:orientation="vertical" android:padding="14dp">
+                    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                        android:text="AVG SPEED" android:textColor="#546E7A" android:textSize="10sp"/>
+                    <TextView android:id="@+id/tvAvgSpeed" android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" android:text="0.0 km/h"
+                        android:textColor="#4CAF50" android:textSize="18sp" android:textStyle="bold"/>
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+        </LinearLayout>
+
+        <!-- Stats Row 2 -->
+        <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+            android:orientation="horizontal" android:layout_marginBottom="8dp">
+
+            <androidx.cardview.widget.CardView android:layout_width="0dp" android:layout_height="wrap_content"
+                android:layout_weight="1" android:layout_marginEnd="4dp"
+                app:cardBackgroundColor="#1A2E40" app:cardCornerRadius="12dp">
+                <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+                    android:orientation="vertical" android:padding="14dp">
+                    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                        android:text="DISTANCE" android:textColor="#546E7A" android:textSize="10sp"/>
+                    <TextView android:id="@+id/tvTotalDist" android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" android:text="0 m"
+                        android:textColor="#64B5F6" android:textSize="18sp" android:textStyle="bold"/>
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView android:layout_width="0dp" android:layout_height="wrap_content"
+                android:layout_weight="1" android:layout_marginStart="4dp"
+                app:cardBackgroundColor="#1A2E40" app:cardCornerRadius="12dp">
+                <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+                    android:orientation="vertical" android:padding="14dp">
+                    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                        android:text="DURATION" android:textColor="#546E7A" android:textSize="10sp"/>
+                    <TextView android:id="@+id/tvDuration" android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" android:text="0s"
+                        android:textColor="#FFD54F" android:textSize="18sp" android:textStyle="bold"/>
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+        </LinearLayout>
+
+        <!-- Info -->
+        <androidx.cardview.widget.CardView android:layout_width="match_parent" android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp" app:cardBackgroundColor="#1A2E40" app:cardCornerRadius="12dp">
+            <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+                android:orientation="vertical" android:padding="14dp">
+                <TextView android:id="@+id/tvAddressD" android:layout_width="match_parent"
+                    android:layout_height="wrap_content" android:text="Calculating..."
+                    android:textColor="#90A4AE" android:textSize="13sp"/>
+                <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+                    android:orientation="horizontal" android:layout_marginTop="10dp">
+                    <TextView android:layout_width="0dp" android:layout_height="wrap_content"
+                        android:layout_weight="1" android:text="ALT" android:textColor="#546E7A" android:textSize="10sp" android:gravity="center"/>
+                    <TextView android:layout_width="0dp" android:layout_height="wrap_content"
+                        android:layout_weight="1" android:text="ACCURACY" android:textColor="#546E7A" android:textSize="10sp" android:gravity="center"/>
+                    <TextView android:layout_width="0dp" android:layout_height="wrap_content"
+                        android:layout_weight="1" android:text="POINTS" android:textColor="#546E7A" android:textSize="10sp" android:gravity="center"/>
+                </LinearLayout>
+                <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+                    <TextView android:id="@+id/tvAltD" android:layout_width="0dp" android:layout_height="wrap_content"
+                        android:layout_weight="1" android:text="0 m" android:textColor="#FFFFFF"
+                        android:textSize="15sp" android:textStyle="bold" android:gravity="center"/>
+                    <TextView android:id="@+id/tvAccD" android:layout_width="0dp" android:layout_height="wrap_content"
+                        android:layout_weight="1" android:text="±0 m" android:textColor="#FFFFFF"
+                        android:textSize="15sp" android:textStyle="bold" android:gravity="center"/>
+                    <TextView android:id="@+id/tvPointsD" android:layout_width="0dp" android:layout_height="wrap_content"
+                        android:layout_weight="1" android:text="0" android:textColor="#FFFFFF"
+                        android:textSize="15sp" android:textStyle="bold" android:gravity="center"/>
+                </LinearLayout>
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+
+        <!-- Action Buttons -->
+        <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+            android:orientation="horizontal" android:layout_marginBottom="8dp">
+            <Button android:id="@+id/btnExportCsv" android:layout_width="0dp" android:layout_height="48dp"
+                android:layout_weight="1" android:text="📤 Export CSV" android:textSize="13sp"
+                app:backgroundTint="#1565C0" android:layout_marginEnd="4dp"/>
+            <Button android:id="@+id/btnShareLoc" android:layout_width="0dp" android:layout_height="48dp"
+                android:layout_weight="1" android:text="🔗 Share" android:textSize="13sp"
+                app:backgroundTint="#1B5E20" android:layout_marginStart="4dp"/>
+        </LinearLayout>
+        <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <Button android:id="@+id/btnOpenMaps" android:layout_width="0dp" android:layout_height="48dp"
+                android:layout_weight="1" android:text="🗺 Open Maps" android:textSize="13sp"
+                app:backgroundTint="#4A148C" android:layout_marginEnd="4dp"/>
+            <Button android:id="@+id/btnNavigate" android:layout_width="0dp" android:layout_height="48dp"
+                android:layout_weight="1" android:text="🧭 Navigate" android:textSize="13sp"
+                app:backgroundTint="#E65100" android:layout_marginStart="4dp"/>
+        </LinearLayout>
+    </LinearLayout>
+</ScrollView>

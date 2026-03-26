@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent" android:layout_height="wrap_content"
+    android:layout_marginBottom="6dp"
+    app:cardBackgroundColor="#1A2E40" app:cardCornerRadius="10dp" app:cardElevation="2dp">
+
+    <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+        android:orientation="horizontal" android:padding="12dp" android:gravity="center_vertical">
+
+        <LinearLayout android:layout_width="0dp" android:layout_height="wrap_content"
+            android:layout_weight="1" android:orientation="vertical">
+            <TextView android:id="@+id/tvCoords" android:layout_width="wrap_content"
+                android:layout_height="wrap_content" android:text="0.000, 0.000"
+                android:textColor="#64B5F6" android:textSize="14sp" android:textStyle="bold"
+                android:fontFamily="monospace"/>
+            <TextView android:id="@+id/tvAddress" android:layout_width="wrap_content"
+                android:layout_height="wrap_content" android:text="--"
+                android:textColor="#90A4AE" android:textSize="12sp" android:maxLines="1"
+                android:ellipsize="end" android:layout_marginTop="2dp"/>
+            <TextView android:id="@+id/tvTime" android:layout_width="wrap_content"
+                android:layout_height="wrap_content" android:text="--"
+                android:textColor="#546E7A" android:textSize="11sp"/>
+        </LinearLayout>
+
+        <LinearLayout android:layout_width="wrap_content" android:layout_height="wrap_content"
+            android:orientation="vertical" android:gravity="end" android:layout_marginStart="8dp">
+            <TextView android:id="@+id/tvSpeed" android:layout_width="wrap_content"
+                android:layout_height="wrap_content" android:text="0 km/h"
+                android:textColor="#4CAF50" android:textSize="13sp" android:textStyle="bold"/>
+            <TextView android:id="@+id/tvAccuracy" android:layout_width="wrap_content"
+                android:layout_height="wrap_content" android:text="±0m"
+                android:textColor="#FFB74D" android:textSize="12sp"/>
+            <ImageButton android:id="@+id/btnDelete" android:layout_width="30dp" android:layout_height="30dp"
+                android:src="@android:drawable/ic_menu_delete"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:tint="#EF5350" android:layout_marginTop="4dp"/>
+        </LinearLayout>
+    </LinearLayout>
+</androidx.cardview.widget.CardView>

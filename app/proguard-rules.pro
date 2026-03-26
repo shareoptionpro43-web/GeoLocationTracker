@@ -1,0 +1,5 @@
+-keep class com.example.geolocationtracker.** { *; }
+-keep class org.osmdroid.** { *; }
+-keep class okhttp3.** { *; }
+-dontwarn okhttp3.**
+-dontwarn okio.**
