@@ -13,13 +13,12 @@ class LocationViewModel(app: Application) : AndroidViewModel(app) {
     val recentLocations: LiveData<List<LocationEntity>> = repo.recent(300)
     val allLocations: LiveData<List<LocationEntity>> = repo.allLocations
 
-    private val _current = MutableLiveData<LocationEntity?>()
+    private val _current = MutableLiveData<LocationEntity?>(null)
     val current: LiveData<LocationEntity?> = _current
 
     private val _isTracking = MutableLiveData(false)
     val isTracking: LiveData<Boolean> = _isTracking
 
-    // Stats derived from recent locations
     val stats: LiveData<TrackStats> = recentLocations.map { locs ->
         computeStats(locs)
     }
@@ -40,13 +39,16 @@ class LocationViewModel(app: Application) : AndroidViewModel(app) {
         var dist = 0.0
         val sorted = locs.sortedBy { it.timestamp }
         for (i in 1 until sorted.size) {
-            dist += haversine(sorted[i-1].latitude, sorted[i-1].longitude,
-                sorted[i].latitude, sorted[i].longitude)
+            dist += haversine(
+                sorted[i - 1].latitude, sorted[i - 1].longitude,
+                sorted[i].latitude, sorted[i].longitude
+            )
         }
-        val duration = if (sorted.size > 1) sorted.last().timestamp - sorted.first().timestamp else 0L
+        val duration =
+            if (sorted.size > 1) sorted.last().timestamp - sorted.first().timestamp else 0L
         return TrackStats(
             pointCount = locs.size,
-            maxSpeedKmh = speeds.max(),
+            maxSpeedKmh = speeds.maxOrNull() ?: 0f,
             avgSpeedKmh = speeds.average().toFloat(),
             totalDistanceM = dist,
             durationMs = duration
@@ -57,8 +59,9 @@ class LocationViewModel(app: Application) : AndroidViewModel(app) {
         val R = 6371000.0
         val dLat = Math.toRadians(lat2 - lat1)
         val dLon = Math.toRadians(lon2 - lon1)
-        val a = sin(dLat/2).pow(2) + cos(Math.toRadians(lat1)) * cos(Math.toRadians(lat2)) * sin(dLon/2).pow(2)
-        return R * 2 * atan2(sqrt(a), sqrt(1-a))
+        val a = sin(dLat / 2).pow(2) +
+                cos(Math.toRadians(lat1)) * cos(Math.toRadians(lat2)) * sin(dLon / 2).pow(2)
+        return R * 2 * atan2(sqrt(a), sqrt(1 - a))
     }
 }
 
@@ -70,11 +73,14 @@ data class TrackStats(
     val durationMs: Long = 0L
 ) {
     fun formattedDistance() = if (totalDistanceM >= 1000)
-        "${"%.2f".format(totalDistanceM/1000)} km" else "${"%.0f".format(totalDistanceM)} m"
+        "${"%.2f".format(totalDistanceM / 1000)} km"
+    else "${"%.0f".format(totalDistanceM)} m"
 
     fun formattedDuration(): String {
         val s = durationMs / 1000
-        val h = s / 3600; val m = (s % 3600) / 60; val sec = s % 60
+        val h = s / 3600
+        val m = (s % 3600) / 60
+        val sec = s % 60
         return if (h > 0) "${h}h ${m}m" else if (m > 0) "${m}m ${sec}s" else "${sec}s"
     }
 }
