@@ -45,7 +45,15 @@ jobs:
         run: ./gradlew :app:assembleDebug --stacktrace
 
       - name: Build Release APK
-        run: ./gradlew :app:assembleRelease --stacktrace
+        run: ./gradlew :app:assembleRelease --stacktrace 2>&1 | tee release_build.log; exit ${PIPESTATUS[0]}
+
+      - name: Show KSP errors if build failed
+        if: failure()
+        run: |
+          echo "=== KSP / Kotlin errors ==="
+          grep -E "error:|warning:|What went wrong|Caused by|\.kt:" release_build.log | head -60 || true
+          echo "=== Full last 80 lines ==="
+          tail -80 release_build.log || true
 
       - name: List APK output files
         run: find app/build/outputs/apk -name "*.apk" | sort
