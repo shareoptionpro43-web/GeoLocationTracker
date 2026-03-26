@@ -45,12 +45,21 @@ jobs:
         run: ./gradlew :app:assembleDebug --stacktrace
 
       - name: Build Release APK
-        run: ./gradlew :app:assembleRelease --stacktrace --info 2>&1 | tail -100
+        run: ./gradlew :app:assembleRelease --stacktrace
 
-      - name: Rename APKs
+      - name: List APK output files
+        run: find app/build/outputs/apk -name "*.apk" | sort
+
+      - name: Rename Debug APK
         run: |
-          mv app/build/outputs/apk/debug/app-debug.apk app/build/outputs/apk/debug/GeoLocationTracker-debug.apk
-          mv app/build/outputs/apk/release/app-release-unsigned.apk app/build/outputs/apk/release/GeoLocationTracker-release.apk
+          mv app/build/outputs/apk/debug/app-debug.apk \
+             app/build/outputs/apk/debug/GeoLocationTracker-debug.apk
+
+      - name: Rename Release APK
+        run: |
+          RELEASE_APK=$(find app/build/outputs/apk/release -name "*.apk" | head -1)
+          echo "Found release APK: $RELEASE_APK"
+          mv "$RELEASE_APK" app/build/outputs/apk/release/GeoLocationTracker-release.apk
 
       - name: Upload Debug APK
         uses: actions/upload-artifact@v4
